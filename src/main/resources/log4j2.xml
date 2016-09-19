@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off" monitorInterval="1800">
+	<properties>
+		<property name="LOG_HOME">${web:rootDir}/logs</property>
+		<property name="FILE_NAME">log</property>
+	</properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %p [%t] %c{1.}:%line - %m%n" />
+		</Console>
+
+		<RollingRandomAccessFile name="Info"
+			fileName="${LOG_HOME}/${FILE_NAME}.log"
+			filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout
+				pattern="%d %p [%t] %c{1.}:%line - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="Info" />
+		</Root>
+	</Loggers>
+</Configuration>
