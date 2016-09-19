@@ -127,8 +127,11 @@
 		</dependency>
 
 		<!-- mysql连接 ，如需使用其他数据库连接，请自己导入包文件到lib中 -->
-		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			<version>5.1.36</version> </dependency> -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.36</version>
+		</dependency>
 
 		<!-- 数据源 -->
 		<dependency>
