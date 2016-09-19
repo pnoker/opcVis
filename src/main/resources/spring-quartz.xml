@@ -13,24 +13,26 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="MsgActivityTimerTrigger" />
+				<!-- <ref bean="TimerOneTrigger" /> -->
 			</list>
 		</property>
 	</bean>
 
-	<bean id="MsgActivityTimerTrigger"
-		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="MsgActivityTimerDetail" />
-		<property name="cronExpression" value="0/10 * * * * ?" />
-	</bean>
+	<!-- <bean id="TimerOne" class="common.msg.util.TimerOne" />
 
-	<bean id="MsgActivityTimerDetail"
+	<bean id="TimerOneDetail"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="MsgActivityTimer" />
+		<property name="targetObject" ref="TimerOne" />
 		<property name="targetMethod" value="executeInternal" />
 		<property name="concurrent" value="false" />
 	</bean>
 
-	<bean id="MsgActivityTimer" class="common.msg.util.MsgActivityTimer" />
+	<bean id="TimerOneTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="TimerOneDetail" />
+		<property name="cronExpression" value="0/10 * * * * ?" />
+	</bean>
+ -->
+
 
 </beans>

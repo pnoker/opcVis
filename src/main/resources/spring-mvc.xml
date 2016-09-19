@@ -2,12 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.1.xsd 
 		http://www.springframework.org/schema/mvc 
-		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/aop   
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -20,6 +23,16 @@
 			</array>
 		</property>
 	</bean>
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<mvc:annotation-driven />
+
+	<mvc:interceptors>
+		<!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		<bean class="com.annotation.AuthInterceptor" />
+	</mvc:interceptors>
 
 	<!-- 自动扫描controller包下的所有类，如果@Controller注入为bean -->
 	<context:component-scan base-package="com.opcVis.controller" />
@@ -46,15 +59,26 @@
 	</bean>
 
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/view/" />
+		<property name="configLocation" value="classpath:velocity.properties" />
+	</bean>
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-		<property name="prefix" value="/" />
+		<property name="cache" value="true" />
+		<property name="prefix" value="" />
 		<property name="suffix" value=".jsp" />
 		<property name="contentType">
 			<value>text/html;charset=UTF-8</value>
 		</property>
 		<property name="exposeSpringMacroHelpers" value="true" /><!--是否使用spring对宏定义的支持 -->
 		<property name="exposeRequestAttributes" value="true" /><!--是否开放request属性 -->
+		<property name="requestContextAttribute" value="rc" />
+		<property name="layoutUrl" value="layout/default.jsp" />
+		<property name="toolboxConfigLocation" value="vm-tools.xml" />
+		<property name="viewClass"
+			value="com.opcVis.util.velocity.VelocityLayoutToolboxView" />
 	</bean>
 
 	<!-- 配置多文件上传 -->

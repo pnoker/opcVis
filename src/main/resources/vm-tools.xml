@@ -15,7 +15,6 @@
 		<tool class="org.apache.velocity.tools.generic.ResourceTool" />
 		<tool class="org.apache.velocity.tools.generic.SortTool" />
 		<tool class="org.apache.velocity.tools.generic.XmlTool" />
-		<tool class="com.noker.velocity.util.NumericTool" />
 	</toolbox>
 	<toolbox scope="request">
 		<tool class="org.apache.velocity.tools.generic.ContextTool" />
