@@ -45,7 +45,7 @@
 		</property>
 	</bean>
 
-<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
 		<property name="prefix" value="/" />
@@ -55,5 +55,20 @@
 		</property>
 		<property name="exposeSpringMacroHelpers" value="true" /><!--是否使用spring对宏定义的支持 -->
 		<property name="exposeRequestAttributes" value="true" /><!--是否开放request属性 -->
+	</bean>
+
+	<!-- 配置多文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+		<property name="maxUploadSize">
+			<!-- 上传文件大小限制为50M，50*1024*1024 -->
+			<value>52428800</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
 	</bean>
 </beans>
