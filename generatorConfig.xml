@@ -3,13 +3,13 @@
 <generatorConfiguration>
 	<!-- 用于配置数据库连接，分别为MySql、Oracle和SqlServer，三者选择其一，与下面的数据库对应 -->
 	<!-- MySql连接 -->
-	<!-- <classPathEntry location="src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.36.jar" /> -->
+	<classPathEntry location="src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.36.jar" />
 
 	<!-- Oracle连接 -->
 	<!-- <classPathEntry location="src/main/webapp/WEB-INF/lib/ojdbc14.jar" /> -->
 
 	<!-- SQLServer连接 -->
-	<classPathEntry location="src/main/webapp/WEB-INF/lib/sqljdbc4.jar" />
+	<!-- <classPathEntry location="src/main/webapp/WEB-INF/lib/sqljdbc4.jar" /> -->
 	
 	<context id="DBTableOne" targetRuntime="MyBatis3">
 		<!-- 抑制警告 -->
@@ -31,9 +31,9 @@
 		
 		<!-- 配置数据库连接方式 ，三者选择其一，与上面的Classpath对应 -->
 		<!-- MySQL数据库连接配置 -->
-		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/vis" userId="root"
-			password="123456" /> -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/opc_vis" userId="root"
+			password="123456" />
 
 		<!-- Oraclel数据库连接配置 -->
 		<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
@@ -41,9 +41,9 @@
 			password="tiger" /> -->
 
 		<!-- SQLServer数据库连接配置 -->
-		<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		<!-- <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 			connectionURL="jdbc:sqlserver://localhost:1433;Database=opcVis"
-			userId="sa" password="123456" />
+			userId="sa" password="123456" /> -->
 			
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
@@ -61,9 +61,9 @@
 			targetProject="src/main/java" type="XMLMAPPER">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
-		<table tableName="OperateLog" domainObjectName="OperateLog"
-			enableCountByExample="true" enableUpdateByExample="true"
-			enableDeleteByExample="true" enableSelectByExample="true"
-			selectByExampleQueryId="true" />
+		<table tableName="data_base" domainObjectName="DataBase"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false" />
 	</context>
 </generatorConfiguration>
