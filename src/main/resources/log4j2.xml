@@ -13,8 +13,7 @@
 		<RollingRandomAccessFile name="Info"
 			fileName="${LOG_HOME}/${FILE_NAME}.log"
 			filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
-			<PatternLayout
-				pattern="%d %p [%t] %c{1.}:%line - %m%n" />
+			<PatternLayout pattern="%d %p [%t] %c{1.}:%line - %m%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
 				<SizeBasedTriggeringPolicy size="10 MB" />
