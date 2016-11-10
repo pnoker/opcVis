@@ -85,7 +85,7 @@ public class BaseController {
 	}
 
 	/**
-	 * 数组格式转换成 List<Map<String,Object>>
+	 * Json转换成 List<Map<String,Object>>
 	 * 
 	 * @param jsonStr
 	 * @return
